@@ -219,6 +219,33 @@ public class Server extends Thread {
     private void ServerMaintenance()
     {
 
+        try{
+            InputStream is;
+            OutputStream os = new BufferedOutputStream(clientSocket.getOutputStream());
+
+            File myMaintenanceFile = new File("src/main/TestSite/maintenance.html");
+
+            try{
+                byte[] data = new byte[((int)myMaintenanceFile.length())];
+                is = new BufferedInputStream(new FileInputStream(myMaintenanceFile));
+                os.write("HTTP:/1.0 200 OK\r\n\r\n".getBytes("UTF-8"));
+                int length;
+                while((length = is.read(data)) > 0)
+                {
+                    os.write(data, 0, length);
+                }
+
+            }catch (Exception e){
+
+                System.out.println("Can't read maintenance file");
+            }
+
+            os.flush();
+            clientSocket.close();
+        }catch (Exception e){
+            System.err.println("Problem with Communication Server");
+            //System.exit(1);
+        }
 
     }
 
