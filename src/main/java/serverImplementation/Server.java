@@ -150,7 +150,23 @@ public class Server extends Thread {
     public  String InputStr(InputStreamReader isr){
 
 
-       return "";
+        try {
+
+            BufferedReader br = new BufferedReader(isr);
+            String[] line = br.readLine().split(" ");
+
+            while(line[1].indexOf("%20") != -1)
+            {
+
+                line[1].replace("%20", " ");
+            }
+            
+            return path1 + line[1];
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return "";
     }
 
 
