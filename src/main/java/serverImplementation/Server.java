@@ -160,7 +160,7 @@ public class Server extends Thread {
 
                 line[1].replace("%20", " ");
             }
-            
+
             return path1 + line[1];
 
         } catch (Exception e){
@@ -172,7 +172,44 @@ public class Server extends Thread {
 
     private static void CheckServerState(){
 
+        try{
+            if(serverState == ServerState.STOPPED)
+            {
 
+                serverSocket.close();
+                System.exit(1);
+            }
+
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        };
+
+        System.out.println("Give the state of the server:\n0.STOP\n1.RUN\n2.MAINTENANCE\n");
+        System.out.println("Current status of server : " + serverState + "\n");
+
+        Scanner option = new Scanner(System.in);
+
+        if(option.nextLine().equals("0"))
+        {
+            serverState = ServerState.STOPPED;
+        }
+        else if(option.nextLine().equals("1"))
+        {
+            serverState = ServerState.RUNNING;
+        }
+        else if(option.nextLine().equals("2"))
+        {
+            serverState = ServerState.MAINTENANCE;
+        }
+
+
+
+
+        System.out.println("The new state of server : " + serverState + "\n");
+
+
+        CheckServerState();
 
 
 
