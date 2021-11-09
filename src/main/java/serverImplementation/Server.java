@@ -12,69 +12,30 @@ public class Server extends Thread {
     String path = "src/main/TestSite/a.html";
     String path1 = "src/main/TestSite";
     int ok = 1;
-    private static  ServerState serverState = ServerState.RUNNING;
-    private static ServerSocket serverSocket = null;
-
-    public static void main(String[] args) throws Exception{
+    public static  ServerState serverState = ServerState.RUNNING;
+    public static String option1;
 
 
-        Thread starting = new Thread(){
 
+    public Server(Socket clientSoc){
 
-            public void run() {
-                CheckServerState();
-            }
-        };
-
-        starting.start();
-
-        try{
-           serverSocket = new ServerSocket(8080);
-           System.out.println("Connection socket created");
-           try{
-               while(true){
-                   System.out.println("Waiting for connection");
-                   new Server(serverSocket.accept());
-               }
-           }catch(IOException e){
-               System.err.println("Accept failed.");
-               System.exit(1);
-           }
-
-        }catch (IOException e){
-            System.err.println("Couldn't listen on port 8080");
-            System.exit(1);
-        }finally {
-            try {
-               serverSocket.close();
-            }
-            catch (IOException e )
-            {
-                System.err.println("Couldn't close port 8080");
-                System.exit(1);
-            }
-        }
-
-
-    }
-
-    private Server(Socket clientSoc){
         clientSocket = clientSoc;
+
         if(serverState == ServerState.RUNNING) {
             start();
-        }
 
-        if(serverState == ServerState.MAINTENANCE){
+        }
+         if(serverState == ServerState.MAINTENANCE){
                 ServerMaintenance();
             }
-        try {
-            if (serverState == ServerState.STOPPED) {
-                serverSocket.close();
+
+            try {
+                if (serverState == ServerState.STOPPED) {
+                    clientSocket.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Couldn t close socket");
             }
-        }catch (Exception e)
-        {
-            System.out.println("Couldn t close socket");
-        }
 
     }
 
@@ -112,8 +73,8 @@ public class Server extends Thread {
                     }
 
 
-                    
-                    is.close();
+                    //TimeUnit.SECONDS.sleep(4);
+                   // is.close();
 
 
 
@@ -139,9 +100,8 @@ public class Server extends Thread {
 
                 clientSocket.close();
         } catch (IOException e) {
-            System.out.println(e);
             System.err.println("Problem with Communication Server");
-            //System.exit(1);
+
         }
         }
 
@@ -150,34 +110,29 @@ public class Server extends Thread {
     public  String InputStr(InputStreamReader isr){
 
 
-        try {
+       try {
 
-            BufferedReader br = new BufferedReader(isr);
+           BufferedReader br = new BufferedReader(isr);
             String[] line = br.readLine().split(" ");
 
-            while(line[1].indexOf("%20") != -1)
-            {
+             return path1 + line[1];
 
-                line[1].replace("%20", " ");
+           } catch (Exception e){
+      System.out.println(e);
             }
-
-            return path1 + line[1];
-
-        } catch (Exception e){
-            System.out.println(e);
-        }
-        return "";
+            return "";
     }
 
 
-    private static void CheckServerState(){
+    public static void CheckServerState(){
+
 
         try{
             if(serverState == ServerState.STOPPED)
             {
 
-                serverSocket.close();
-                System.exit(1);
+             clientSocket.close();
+             System.exit(1);
             }
 
         }catch (Exception e)
@@ -189,34 +144,30 @@ public class Server extends Thread {
         System.out.println("Current status of server : " + serverState + "\n");
 
         Scanner option = new Scanner(System.in);
+         option1 = option.nextLine();
 
-        if(option.nextLine().equals("0"))
-        {
+        if(option1.equals("0")) {
             serverState = ServerState.STOPPED;
         }
-        else if(option.nextLine().equals("1"))
+
+         if(option1.equals("1"))
         {
             serverState = ServerState.RUNNING;
         }
-        else if(option.nextLine().equals("2"))
+         if(option1.equals("2"))
         {
             serverState = ServerState.MAINTENANCE;
         }
 
 
-
-
         System.out.println("The new state of server : " + serverState + "\n");
 
-
-        CheckServerState();
-
-
+            CheckServerState();
 
     }
 
 
-    private void ServerMaintenance()
+    public void ServerMaintenance()
     {
 
         try{
@@ -244,9 +195,8 @@ public class Server extends Thread {
             clientSocket.close();
         }catch (Exception e){
             System.err.println("Problem with Communication Server");
-            //System.exit(1);
-        }
 
+        }
     }
 
 }
