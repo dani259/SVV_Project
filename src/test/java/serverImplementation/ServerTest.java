@@ -1,102 +1,128 @@
 package serverImplementation;
 
-import com.sun.tools.javac.Main;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-import serverImplementation.*;
-
-import static org.junit.Assert.*;
 
 public class ServerTest {
 
 
     public Server server = null;
+    Socket clientSocket;
+    ServerSocket serverSocket;
     @Before
     public void setUp() throws Exception {
     }
 
     @After
     public void tearDown() throws Exception {
+
+        try {
+
+            serverSocket.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Couldn't close port 8080");
+        }
     }
 
 
     @Test
-    public void CheckServerStateTest() throws Exception {
-        ServerSocket serverSocket = new ServerSocket(8080);
-        Socket clientSocket = serverSocket.accept();
+    public void CheckServerStateTest1() throws Exception {
+         serverSocket = new ServerSocket(8080);
+        clientSocket = serverSocket.accept();
         server = new Server(clientSocket);
 
-        assertEquals("We are in running state",Server.serverState,ServerState.RUNNING);
+        Server.serverState = ServerState.RUNNING;
 
-        Server.serverState = ServerState.STOPPED;
-        server.CheckServerState();
+        assertEquals(server.CheckServerState(), 1);
+
 
     }
 
+
+
     @Test
-    public void ServerMaintenance() throws Exception {
-        ServerSocket serverSocket = new ServerSocket(8080);
-        Socket clientSocket = serverSocket.accept();
+    public void CheckServerStateTest2() throws Exception {
+         serverSocket = new ServerSocket(8080);
+         clientSocket = serverSocket.accept();
         server = new Server(clientSocket);
 
          Server.serverState = ServerState.MAINTENANCE;
-        server.ServerMaintenance();
+
+        assertEquals(server.CheckServerState(), 2);
+
 
 
     }
 
 
     @Test
-    public void Run() throws Exception {
-        Thread starting = new Thread(){
+    public void CheckServerStateTest3() throws Exception {
+         serverSocket = new ServerSocket(8080);
+         clientSocket = serverSocket.accept();
+        server = new Server(clientSocket);
+
+        Server.serverState = ServerState.STOPPED;
+
+        assertEquals(server.CheckServerState(), 0);
 
 
-            public void run() {
-                Server.CheckServerState();
-            }
-        };
 
-        starting.start();
+    }
 
-        ServerSocket serverSocket = new ServerSocket(8080);
-        Socket clientSocket = serverSocket.accept();
+    @Test
+    public void ServerMaintenanceTest() throws Exception {
+         serverSocket = new ServerSocket(8080);
+         clientSocket = serverSocket.accept();
+        server = new Server(clientSocket);
+
+        Server.serverState = ServerState.MAINTENANCE;
+        server.ServerMaintenance();
+        assertEquals(server.CheckServerState(), 2);
+
+    }
+    @Test
+    public void RunTest() throws Exception {
+
+         serverSocket = new ServerSocket(8080);
+         clientSocket = serverSocket.accept();
         server = new Server(clientSocket);
         Server.serverState = ServerState.MAINTENANCE;
 
         server.run();
 
+        assertEquals(server.CheckServerState(), 2);
 
     }
 
     @Test
-    public void CheckMaintenanceTest() throws Exception {
+    public void GiveServerStateTest() throws Exception {
         Thread starting = new Thread(){
 
 
             public void run() {
-                Server.serverState = ServerState.MAINTENANCE;
-                Server.CheckServerState();
+                Server.serverState = ServerState.STOPPED;
+                Server.GiveServerState();
 
             }
         };
 
         starting.start();
 
-        ServerSocket serverSocket = new ServerSocket(8080);
-        Socket clientSocket = serverSocket.accept();
+         serverSocket = new ServerSocket(8080);
+         clientSocket = serverSocket.accept();
         server = new Server(clientSocket);
 
-
+        assertEquals(server.CheckServerState(), 0);
 
 
 

@@ -21,23 +21,42 @@ public class Server extends Thread {
 
         clientSocket = clientSoc;
 
-        if(serverState == ServerState.RUNNING) {
+
+        if(CheckServerState() == 1)
+        {
             start();
-
         }
-         if(serverState == ServerState.MAINTENANCE){
-                ServerMaintenance();
-            }
 
-            try {
-                if (serverState == ServerState.STOPPED) {
-                    clientSocket.close();
-                }
-            } catch (Exception e) {
-                System.out.println("Couldn t close socket");
-            }
+         if(CheckServerState() == 2)
+        {
+            ServerMaintenance();
+        }
+
 
     }
+
+
+    public int CheckServerState()
+    {
+        if(serverState == ServerState.RUNNING) {
+            return 1;      // return 1 if is in running
+
+        }
+        if(serverState == ServerState.MAINTENANCE){
+            return 2;      // return 2 if is in maintenance
+        }
+
+        try {
+            if (serverState == ServerState.STOPPED) {
+                clientSocket.close();
+                return 0;    // return 0 if is stopped
+            }
+        } catch (Exception e) {
+            System.out.println("Couldn t close socket");
+        }
+        return 0;
+    }
+
 
     public void run()
     {
@@ -115,7 +134,8 @@ public class Server extends Thread {
            BufferedReader br = new BufferedReader(isr);
             String[] line = br.readLine().split(" ");
 
-             return path1 + line[1];
+
+           return path1 + line[1];
 
            } catch (Exception e){
       System.out.println(e);
@@ -124,7 +144,7 @@ public class Server extends Thread {
     }
 
 
-    public static void CheckServerState(){
+    public static void GiveServerState(){
 
 
         try{
@@ -162,7 +182,7 @@ public class Server extends Thread {
 
         System.out.println("The new state of server : " + serverState + "\n");
 
-            CheckServerState();
+            GiveServerState();
 
     }
 
@@ -194,7 +214,7 @@ public class Server extends Thread {
             os.flush();
             clientSocket.close();
         }catch (Exception e){
-            System.err.println("Problem with Communication Server");
+            System.out.println("Problem with Communication Server");
 
         }
     }
