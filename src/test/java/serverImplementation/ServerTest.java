@@ -106,6 +106,10 @@ public class ServerTest {
 
     @Test
     public void GiveServerStateTest() throws Exception {
+        serverSocket = new ServerSocket(8080);
+        clientSocket = serverSocket.accept();
+        server = new Server(clientSocket);
+
         Thread starting = new Thread(){
 
 
@@ -118,9 +122,7 @@ public class ServerTest {
 
         starting.start();
 
-         serverSocket = new ServerSocket(8080);
-         clientSocket = serverSocket.accept();
-        server = new Server(clientSocket);
+
 
         assertEquals(server.CheckServerState(), 0);
 
