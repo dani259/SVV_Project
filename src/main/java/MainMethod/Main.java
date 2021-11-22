@@ -4,7 +4,7 @@ import serverImplementation.Server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import static serverImplementation.Server.CheckServerState;
+import static serverImplementation.Server.GiveServerState;
 
 
 public class Main {
@@ -20,7 +20,7 @@ public class Main {
 
             public void run() {
 
-                Server.CheckServerState();
+                Server.GiveServerState();
             }
         };
 

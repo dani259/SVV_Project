@@ -2,6 +2,7 @@ package serverImplementation;
 
 import java.io.*;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.sql.Time;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -13,13 +14,13 @@ public class Server extends Thread {
     String path1 = "src/main/TestSite";
     int ok = 1;
     public static  ServerState serverState = ServerState.RUNNING;
-    public static String option1;
+    public static String option1 = "1";
 
 
 
     public Server(Socket clientSoc){
 
-        clientSocket = clientSoc;
+        init(clientSoc);
 
 
         if(CheckServerState() == 1)
@@ -35,6 +36,10 @@ public class Server extends Thread {
 
     }
 
+public static void init(Socket clientSoc)
+{
+    clientSocket = clientSoc;
+}
 
     public int CheckServerState()
     {
@@ -65,7 +70,7 @@ public class Server extends Thread {
             InputStream is;
 
             OutputStream os = new BufferedOutputStream(clientSocket.getOutputStream());
-            InputStreamReader isr = new InputStreamReader(clientSocket.getInputStream());
+            InputStreamReader isr = new InputStreamReader(clientSocket.getInputStream(), StandardCharsets.UTF_8);
 
             if(ok == 1){
 
@@ -163,7 +168,7 @@ public class Server extends Thread {
         System.out.println("Give the state of the server:\n0.STOP\n1.RUN\n2.MAINTENANCE\n");
         System.out.println("Current status of server : " + serverState + "\n");
 
-        Scanner option = new Scanner(System.in);
+        Scanner option = new Scanner(System.in, "UTF-8");
          option1 = option.nextLine();
 
         if(option1.equals("0")) {
@@ -182,7 +187,15 @@ public class Server extends Thread {
 
         System.out.println("The new state of server : " + serverState + "\n");
 
-            GiveServerState();
+
+         if(serverState != ServerState.STOPPED)
+         {
+             GiveServerState();
+         }
+         else
+         {
+             System.exit(1);
+         }
 
     }
 
