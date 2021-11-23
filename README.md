@@ -9,3 +9,12 @@ Java 16.0.2
  - After fixing
  
 ![after](https://user-images.githubusercontent.com/67190949/142994490-4a55792d-b32e-4975-83f5-cae28966915b.png)
+
+# Dynamic analysis
+  - Monitor printscreen
+ 
+![monitor](https://user-images.githubusercontent.com/67190949/143000750-8d0e6c5e-97af-4ced-aad3-23ccaba4210b.png)
+
+  - Threads printscreen
+
+![threads](https://user-images.githubusercontent.com/67190949/143000807-b84ce73c-dc27-44f3-9bed-95d058c359d8.png)
