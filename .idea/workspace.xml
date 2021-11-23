@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b4637d3-010a-403b-986e-cba0c1de56e9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainMethod/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainMethod/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/serverImplementation/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/serverImplementation/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MainMethod/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MainMethod/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/serverImplementation/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/serverImplementation/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/serverImplementation/ServerTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/serverImplementation/ServerTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/serverImplementation/ServerTest$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/serverImplementation/ServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/serverImplementation/ServerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Program Files/Java/jdk-17/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
