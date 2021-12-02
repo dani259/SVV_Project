@@ -1,3 +1,8 @@
-serverImplementation\Server.class
-serverImplementation\Server$1.class
-serverImplementation\ServerState.class
+sample\Controller.class
+sample\ServerState.class
+sample\Controller$1.class
+sample\JavaFxMainClass.class
+sample\Main.class
+sample\Controller$2.class
+sample\Server.class
+sample\StartServer.class
