@@ -20,3 +20,14 @@ Java 16.0.2
   - Threads printscreen
 
 ![threads](https://user-images.githubusercontent.com/67190949/143000807-b84ce73c-dc27-44f3-9bed-95d058c359d8.png)
+
+
+# YourKit 
+
+![yourKit1](https://user-images.githubusercontent.com/67190949/144724487-7d080d6a-c436-471a-9661-5c2241b35ccd.png)
+
+![yourKit2](https://user-images.githubusercontent.com/67190949/144724491-9abb0dc8-7df1-4bf8-8cce-bf2ec5226c8d.png)
+
+![yourKit3](https://user-images.githubusercontent.com/67190949/144724496-d92b7635-54e6-4be3-bced-ba16aa68278a.png)
+
+![yourKit4](https://user-images.githubusercontent.com/67190949/144724503-3dc2f57a-c3d1-4d31-923f-d9812aabdcf6.png)
