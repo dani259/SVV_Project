@@ -2,6 +2,10 @@
 For coverage check coverage folder
 # Java version 
 Java 16.0.2
+
+# Coverage
+![image](https://user-images.githubusercontent.com/67190949/144395101-6860e4bd-01a0-4b37-82ae-8b86059ea15a.png)
+
 # Static analysis
   - Before fixing the red warnings
   
