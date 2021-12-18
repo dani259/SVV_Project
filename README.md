@@ -1,6 +1,7 @@
 # SVV_Project
 For coverage check coverage folder
-GUI is implemented in serverWithJavaFxGUI
+
+- GUI is implemented in serverWithJavaFxGUI
 
 # Java version 
 Java 16.0.2
